@@ -17,7 +17,9 @@
           <div class="card mb-3" style="max-width: 100%;">
             <div class="row g-0">
               <div class="col-md-5">
-                <img src="{{book.imageLinks}}" class="img-fluid rounded-start">
+                {% for thumbnail in book.thumbnails.all %}     
+                <img src={{thumbnail.thumbnail}} class="img-fluid rounded-start">
+                {% endfor %}
               </div>
               <div class="col-md-7">
                 <div class="card-body">

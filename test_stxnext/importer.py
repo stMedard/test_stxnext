@@ -1,4 +1,3 @@
-import requests
 from django.views.generic import CreateView
 from django.conf import settings
 
