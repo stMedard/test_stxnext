@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class='container py-5'>
+
+    <h1>Dodaj książkę</h1>
+    
+    <form method='post'>
+        {% csrf_token %}
+
+        <p>{{ form.as_p }}</p>
+        <p>{{ authors_form }}</p>
+        <p>{{ identifiers_form }} </p>
+        <p>{{ thumbnail_form }}</p>
+
+        <button class='btn btn-primary' type='submit'>Zapisz</button>
+
+    </form>
+</div>
+<script>
+    document.getElementById("id_title").classList.add("form-control");
+    document.getElementById("id_title").placeholder = "Tytuł";
+    document.getElementById("id_title").required = "required";
+    document.getElementById("id_title").type = "text";
+
+    document.getElementById("id_author").classList.add("form-control");
+    document.getElementById("id_author").placeholder = "Autor";
+    document.getElementById("id_author").required = "required";
+    document.getElementById("id_author").type = "text";
+
+    document.getElementById("id_industryIdentifier").classList.add("form-control");
+    document.getElementById("id_industryIdentifier").placeholder = "Nr ISBN";
+    document.getElementById("id_industryIdentifier").required = "required";
+    document.getElementById("id_industryIdentifier").type = "text";
+
+    document.getElementById("id_pageLink").classList.add("form-control");
+    document.getElementById("id_publishedDate").dataset.add("form-control");
+
+    document.getElementById("id_pageCount").classList.add("form-control");
+    document.getElementById("id_pageCount").placeholder = "Ilość stron";
+    document.getElementById("id_pageCount").required = "required";
+    document.getElementById("id_pageCount").type = "text";
+    document.getElementById("id_language").classList.add("form-control");
+    document.getElementById("id_language").placeholder = "Język";
+    document.getElementById("id_language").required = "required";
+    document.getElementById("id_language").type = "text";
+    
+</script>
+
+{% endblock %}

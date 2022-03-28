@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <h1>Lista książek</h1>
+    <form method="get">
+        {{myFilter.form}}
+        <button class="btn btn-primary" type="submit">Szukaj</button>
+    </form>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tytuł</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Publikacja</th>
+            <th scope="col">Język</th>
+          </tr>
+        </thead>
+        {% for book in book_list %}
+        <tbody>
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ book.title }}</td>
+            <td>{% for name in book.authors.all %}
+              {{ name.author }},
+              {% endfor %}</td>
+            <td>{{ book.publishedDate }}</td>
+            <td>{{ book.language }}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    </div>
+</div>
+{% endblock %}

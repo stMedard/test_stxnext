@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class='container py-5'>
+
+    <h1>Dodaj książkę z API</h1>
+    
+    <form method='post'>
+        {% csrf_token %}
+
+        <p>{{form_2.as_p }}</p>
+
+        <button class='btn btn-primary' type='submit'>Zapisz</button>
+
+    </form>
+
+</div>
+<script>
+    document.getElementById("id_title").classList.add("form-control");
+    document.getElementById("id_title").placeholder = "Tytuł";
+    document.getElementById("id_title").required = "required";
+    document.getElementById("id_title").type = "text";
+
+    
+    
+</script>
+
+{% endblock %}

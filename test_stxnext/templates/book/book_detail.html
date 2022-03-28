@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
+<div class="container py-5">
+  <div class="card mb-3" style="max-width: 100%;">
+        <div class="card-body">
+          <div class="card mb-3" style="max-width: 100%;">
+            <div class="row g-0">
+              <div class="col-md-5">
+                <img src="{{book.imageLinks}}" class="img-fluid rounded-start">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body">
+                  <h5 class="card-title">{{ book.title }}</h5>
+                  <p class="card-text">Autor: {% for name in book.authors.all %}
+                    {{ name.author }},
+                    {% endfor %}</p>
+                  <p class="card-text">Identyfikator:
+                    {% for identifier in book.industry_identifiers.all %}
+                    {{ identifier.type }} : {{ identifier.identifier }}
+                    {% endfor %}</p>
+                  <p class="card-text">Liczba stron: {{ book.pageCount }}</p>
+                  <p class="card-text">Język: {{ book.language }}</p>
+                  <p class="card-text"><small class="text-muted">Publikacji: {{ book.publishedDate }}</small></p>
+                  <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <a class="btn btn-outline-success" href="{% url 'edit-book' pk=book.id %}" role="button">Edytuj</a>
+                    <a class="btn btn-outline-primary" href="{% url 'delete-book' book_id=book.id %}" role="button">Usuń</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+  </div>
+</div>
+{% endblock %}

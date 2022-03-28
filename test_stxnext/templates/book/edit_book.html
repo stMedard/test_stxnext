@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class='container py-5'>
+
+    <h1>Edytyj książkę</h1>
+
+    <form method='post' action="{% url 'edit-book' pk=book.id %}">
+        {% csrf_token %}
+        
+        <p>{{ form.as_p }}</p>
+        <p>{{ authors_form }}</p>
+        <p>{{ identifiers_form }} </p>
+        <p>{{ thumbnail_form }}</p>
+
+        <button class='btn btn-primary' type='submit'>Zapisz</button>
+        
+    </form>
+</div>
+
+<script>
+    document.getElementById("id_title").classList.add("form-control");
+    document.getElementById("id_title").placeholder = "Title";
+    document.getElementById("id_title").type = "text";
+    document.getElementById("id_author").classList.add("form-control");
+    document.getElementById("id_author").placeholder = "Author";
+    document.getElementById("id_author").type = "text";
+    document.getElementById("id_illustration").classList.add("form-control");
+    document.getElementById("id_illustration").placeholder = "Illustration";
+    document.getElementById("id_illustration").type = "text";
+    document.getElementById("id_genre").classList.add("form-control");
+    document.getElementById("id_date_of_publication").dataset.add("form-control");
+    document.getElementById("id_title").required = "required";
+    document.getElementById("id_genre").required = "required";
+</script>
+
+{% endblock %}
