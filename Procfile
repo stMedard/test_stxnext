@@ -1,1 +1,1 @@
-web: gunicorn test_stxnext.wsigheroku 
+web: gunicorn test_stxnext.wsgi
