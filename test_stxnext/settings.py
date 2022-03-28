@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-zbfn)cci2oy1gmkr$om%$0!!$qx^j)-te=6md$+j#4xq*&_k8$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tranquil-plateau-33840.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['tranquil-plateau-33840.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'test_stxnext',
     'django_filters',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

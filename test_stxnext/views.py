@@ -10,7 +10,17 @@ from django.views.generic.edit import UpdateView
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+from rest_framework import viewsets
+from rest_framework import permissions
+from .serializers import BookSerializer
 
+class BookViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows book to be viewed or edited.
+    """
+    queryset = Book.objects.all().order_by('-id')
+    serializer_class = BookSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class BookLibraryView(ListView):
