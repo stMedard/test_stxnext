@@ -84,9 +84,13 @@ DATABASES = {
         'HOST': 'ec2-52-73-155-171.compute-1.amazonaws.com',
         'PORT': 5432,
         'USER': 'uiadgqthmfsxvp',
-        'PASSWORD': '4cce62eab775b654f40398af7912a03e6cebac7f75d5d34cf5d634d671e887c7'
-        
-    }
+        'PASSWORD': '4cce62eab775b654f40398af7912a03e6cebac7f75d5d34cf5d634d671e887c7',
+        },
+    'TEST': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        },
+    
 }
 
 # Password validation
