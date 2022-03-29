@@ -80,11 +80,12 @@ WSGI_APPLICATION = 'test_stxnext.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dfv4hvf82f1hl9',
-        'HOST': 'ec2-54-157-79-121.compute-1.amazonaws.com',
+        'NAME': 'd2i5i9u7ir12tc',
+        'HOST': 'ec2-52-73-155-171.compute-1.amazonaws.com',
         'PORT': 5432,
-        'USER': 'rkthmerzdtwswm',
-        'PASSWORD': '7e83f23e71038a7a707b5958981421accae7010214449a2835bdae2d8ffb195e'
+        'USER': 'uiadgqthmfsxvp',
+        'PASSWORD': '4cce62eab775b654f40398af7912a03e6cebac7f75d5d34cf5d634d671e887c7'
+        
     }
 }
 
