@@ -10,10 +10,25 @@ from django.views.generic.edit import UpdateView
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+from rest_framework import viewsets
+from rest_framework import permissions
+from .serializers import BookSerializer
 
+
+class BookViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows book to be viewed or edited.
+    """
+    queryset = Book.objects.all().order_by('-id')
+    serializer_class = BookSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class BookLibraryView(ListView):
+
+    """
+    View books in the library. Possibility to switch to the book details view.
+    """
 
     model = Book
     template_name = 'book/book_list.html'
@@ -23,6 +38,10 @@ class BookLibraryView(ListView):
         return book 
 
 def bookListView(request):
+
+    """
+    Searchable book list view in table.
+    """
 
     template_name = 'book/book_table.html'
 
@@ -34,6 +53,10 @@ def bookListView(request):
 
 class BookDetailView(DetailView):
 
+    """
+    Book detail view with the possibility of editing and deleting.
+    """
+
     model = Book
     template_name = 'book/book_detail.html'
 
@@ -42,6 +65,11 @@ class BookDetailView(DetailView):
         return context 
   
 class BookCreate(CreateView):
+
+    """
+    Add book page view.
+    """
+
     model = Book
     template_name = 'book/add_book.html'
     form_class = BookForm
@@ -95,6 +123,11 @@ class BookCreate(CreateView):
         ))
 
 class AddBookApi(Importer):
+
+    """
+    The view of the page for adding a book from API with keyword search.
+    """
+
     model = Book
     form_class_book = BookForm
     form_class_search = SearchBookForm
@@ -169,14 +202,12 @@ class AddBookApi(Importer):
         else:
             return HttpResponseRedirect(reverse_lazy('add-book-api'))
 
-def delete_book(request, book_id):
-    
-    book = Book.objects.get(id=book_id)
-    book.delete()
-
-    return redirect('library')
-
 class BookEdit(UpdateView):
+
+    """
+    Book data edit page view.
+    """
+
     model = Book
     template_name = 'book/edit_book.html'
     form_class = BookForm
@@ -229,3 +260,21 @@ class BookEdit(UpdateView):
             authors_form=authors_form,
             thumbnail_form=thumbnail_form,
         ))
+
+def delete_book(request, book_id):
+
+    """
+    Removing a book from the database.
+    """
+    
+    book = Book.objects.get(id=book_id)
+    authors = Authors.objects.filter(book_id = book_id)
+    identifier = IndustryIdentifier.objects.filter(book_id = book_id)
+    thumbnail = Thumbnail.objects.filter(book_id = book_id)
+
+    book.delete()
+    authors.delete()
+    identifier.delete()
+    thumbnail.delete()
+
+    return redirect('library')

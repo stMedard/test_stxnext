@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-zbfn)cci2oy1gmkr$om%$0!!$qx^j)-te=6md$+j#4xq*&_k8$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tranquil-plateau-33840.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'test_stxnext',
     'django_filters',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -77,11 +79,19 @@ WSGI_APPLICATION = 'test_stxnext.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd2i5i9u7ir12tc',
+        'HOST': 'ec2-52-73-155-171.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'uiadgqthmfsxvp',
+        'PASSWORD': '4cce62eab775b654f40398af7912a03e6cebac7f75d5d34cf5d634d671e887c7',
+        },
+    'TEST': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        },
+    
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -118,6 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
